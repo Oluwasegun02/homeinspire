@@ -7,6 +7,8 @@ body, h1, h2, h3, p, ul, li {
   body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    max-width: 1500px;
+    margin: 0 auto;
   }
   
   header {
@@ -84,7 +86,8 @@ body, h1, h2, h3, p, ul, li {
     padding: 40px;
   }
   
-  h2 {
+  #presentation h2,
+  #blog h2 {
     margin-bottom: 20px;
   }
   

@@ -1,0 +1,20 @@
+:root {
+  --basic-color: #80776e;
+}
+*{
+  box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+/* Main section */
+.main-section {
+    display: grid;
+    grid-template-columns: auto 33%;
+}
+.main-section section {
+    background-color: var(--basic-color);
+}
