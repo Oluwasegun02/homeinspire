@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Inspire</title>
     <link rel="stylesheet" href="./home.css" />
-    <link rel="stylesheet" href=".././style.css" />
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   </head>
   <body>
     <header>
@@ -21,8 +20,98 @@
     </header>
 
     <main class="main-section">
-        <section>jk</section>
-        <aside>jk</aside>
+        <section>
+          <div id="card" class="cards">
+            <div class="number">
+              <span><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>
+              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+              <h1 id="name">Down House</h1>
+              <h3 id="interval">2 Week ago</h3>
+            </div>
+            <div class="bodys">
+              <ul id="tag"></ul>
+              <p id="title">categorie</p>
+              <p id="message">message</p>
+              <p id="like">I will display &#8364; <button id="like-btn">Like</button> <span id="like-count">0</span> Likes</p>
+            </div>
+         </div>
+         <!-- second card -->
+          <div id="card" class="cards">
+            <div class="number">
+              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+              <h1 id="name">Down House</h1>
+              <h3 id="interval">2 Week ago</h3>
+            </div>
+            <div class="bodys">
+              <ul id="tag"></ul>
+              <p id="title">categorie</p>
+              <p id="message">message</p>
+              <p id="like">I will display &#8364; <button id="like-btn">Like</button> <span id="like-count">0</span> Likes</p>
+            </div>
+          </div>
+          <!-- third card -->
+          <div id="card" class="cards">
+            <div class="number">
+              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+              <h1 id="name">Down House</h1>
+              <h3 id="interval">2 Week ago</h3>
+            </div>
+            <div class="bodys">
+              <ul id="tag">
+              </ul>
+              <p id="title">categorie</p>
+              <p id="message">message</p>
+              <p id="like">I will display &#8364; <button id="like-btn">Like</button> <span id="like-count">0</span> Likes</p>
+            </div>
+         </div>
+         <!-- forth card -->
+
+         <div id="card" class="cards">
+          <div class="numbers">
+            <img src="../../image/home2.jpg" alt="">
+            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+            <img src="" alt="">
+            <h2 id="name">Down House</h1>
+            <h2 id="interval">2 Week ago</h3>
+          </div>
+          <div class="bodys">
+            <ul id="tag">
+              <li>#lovely</li>
+              <li>#builtiful</li>
+            </ul>
+            <p id="title">categorie</p>
+            <p id="message">message</p>
+            <p id="like">I will display &#8364; <button id="like-btn">Like</button> <span id="like-count">0</span> Likes</p>
+          </div>
+        </div>
+        </section>
+        <aside>
+          <div>
+            <h2>Creating a Home Inspire</h2>
+            <form action="../../server/controllers/posts.js" method="get">
+              <input type="text" placeholder="Create" class="input" value="name">
+              <input type="text" placeholder="title" class="input">
+              <input type="text" placeholder="message" class="input">
+              <input type="text" placeholder="tag" class="input">
+              <input type="file" id="file1" name="upload" class="upload">
+              <input type="submit" value="submit" class="btn">
+              <button class="btn">clear</button>
+            </form>
+          </div>
+        </aside>
     </main>
+    <footer>
+      <span><a href="../index.html">port view</a></span>
+      <p>&copy; 2023 Home Inspire. All rights reserved.</p>
+    </footer>
+    <script>
+      const likeButton = document.getElementById('like like-btn');
+      const likeCount = document.getElementById('like like-count');
+      let count = 0;
+      likeButton.addEventListener('click', function() {
+        count++;
+        likeCount.textContent = count;
+      });
+    </script>
   </body>
 </html>
