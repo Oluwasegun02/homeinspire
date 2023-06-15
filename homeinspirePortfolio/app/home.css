@@ -149,9 +149,13 @@ color: #000;
   display:flex;
   padding-left: 65%;
   margin: 10px 10px;
+  margin-top: 20px;
   flex-direction: column;
 }
 .main-section aside div{
+  flex-wrap: wrap;
+  flex-grow: 30%;
+  flex-shrink: initial;
   height: 70vh;
   background-color: var(--basic-color);
 }
