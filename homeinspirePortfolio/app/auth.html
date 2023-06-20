@@ -137,15 +137,15 @@ box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
       <nav>
         <a href="./home.html" class="logo">Home Inspire</a>
         <ul class="nav-links">
-          <li><a href="./auth.html">Signup</a></li>
-          <li><a href="./auth.html">Login</a></li>
+          <li><a href="#signup-box-link">Signup</a></li>
+          <li><a href="#login-box-link">Login</a></li>
         </ul>
       </nav>
     </header>
     <div class="login-box">
       <div class="lb-header">
-        <a href="#" class="active" id="login-box-link">Login</a>
-        <a href="#" id="signup-box-link">Sign Up</a>
+        <a href="#login-box-link" class="active" id="login-box-link">Login</a>
+        <a href="#signup-box-link" id="signup-box-link">Sign Up</a>
       </div>
       <div class="social-login">
         <a href="#">
@@ -171,22 +171,8 @@ box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
           <a href="#" class="forgot-password">Forgot password?</a>
         </div>
       </form>
-      <form class="email-signup">
-        <div class="u-form-group">
-          <input type="email" placeholder="Email"/>
-        </div>
-        <div class="u-form-group">
-          <input type="password" placeholder="Password"/>
-        </div>
-        <div class="u-form-group">
-          <input type="password" placeholder="Confirm Password"/>
-        </div>
-        <div class="u-form-group">
-          <button>Sign Up</button>
-        </div>
-      </form>
   </div>
-    <div class="login-box">
+  <div class="login-box">
       <div class="lb-header">
         <a href="#" class="active" id="login-box-link">Login</a>
         <a href="#" id="signup-box-link">Sign Up</a>
@@ -201,20 +187,6 @@ box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
           log in with Google
         </a>
       </div>
-      <form class="email-login">
-        <div class="u-form-group">
-          <input type="email" placeholder="Email"/>
-        </div>
-        <div class="u-form-group">
-          <input type="password" placeholder="Password"/>
-        </div>
-        <div class="u-form-group">
-          <button>Log in</button>
-        </div>
-        <div class="u-form-group">
-          <a href="#" class="forgot-password">Forgot password?</a>
-        </div>
-      </form>
       <form class="email-signup">
         <div class="u-form-group">
           <input type="email" placeholder="Email"/>
@@ -232,18 +204,23 @@ box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
     </div>
     
    <script>
-      $(".email-signup").hide();
-      $("#signup-box-link").click(function(){
-        $(".email-login").fadeOut(100);
-        $(".email-signup").delay(100).fadeIn(100);
-        $("#login-box-link").removeClass("active");
-        $("#signup-box-link").addClass("active");
+    let emailL = document.getElementsByClassName("email-signup");
+    let emailIn = document.getElementsByClassName("email-login");
+    let signupbox = document.getElementsById("signup-box-link");
+    let emailsignup = document.getElementsById("login-box-link")
+   
+      $("emailL").hide();
+      $("signupbox").click(function(){
+        $("emailIn").fadeOut(100);
+        $("emailL").delay(100).fadeIn(100);
+        $("emailsignup").removeClass("active");
+        $("signupbox").addClass("active");
       });
-      $("#login-box-link").click(function(){
-        $(".email-login").delay(100).fadeIn(100);;
-        $(".email-signup").fadeOut(100);
-        $("#login-box-link").addClass("active");
-        $("#signup-box-link").removeClass("active");
+      $("emailsignup").click(function(){
+        $("emailIn").delay(100).fadeIn(100);;
+        $("emailL").fadeOut(100);
+        $("emailsignup").addClass("active");
+        $("signupbox").removeClass("active");
       });
    </script> 
 </body>
