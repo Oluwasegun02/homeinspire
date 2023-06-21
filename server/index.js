@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import hbs from "express-handlebars";
+import Handlebars from 'handlebars';
+import { allowInsecurePrototypeAccess } from "@handlebars/allow-prototype-access";
 import session from "express-session";
 import flash from "express-flash";
 
@@ -17,6 +19,12 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  res.locals.token = req.session.token;
+  next();
+});
 app.use(flash());
 
 // app.use(bodyParser.json({ limit: "30mb", extended: true }));
@@ -25,8 +33,10 @@ app.use(cors());
 
 app.use("/public", express.static("public"));
 
-app.engine("hbs", hbs.engine({ extname: ".hbs" }));
+app.engine("hbs", hbs.engine({ extname: ".hbs", handlebars: allowInsecurePrototypeAccess(Handlebars) }));
 app.set("view engine", "hbs");
+
+
 
 app.use("/", routes);
 

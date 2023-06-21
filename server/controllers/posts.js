@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import PostMessage from "../models/postMessages.js";
 import multer from "multer";
 import path from "path";
+import moment from "moment";
 
 const img_storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -42,23 +43,35 @@ function checkFileType(file, cb) {
 export const getPosts = async (req, res) => {
   // const { page } = req.query;
   try {
-    const posts = await PostMessage.find()
+    const posts = await PostMessage.find();
+
+    const formattedPosts = posts.map((post) => ({
+      ...post._doc,
+      createdAt: moment(post.createdAt).fromNow(),
+    }));
     
     // console.log(posts);
     
-    res.render('home', {posts})
+    res.render('home', {posts: formattedPosts})
   } catch (error) {
     res.redirect('/error');
   }
 };
 
 export const getPost = async (req, res) => {
-  const { id } = req.params;
+  const id = req.params.id;
+
   try {
     const post = await PostMessage.findById(id);
-    res.status(200).json(post);
+
+    const formattedPost = {
+      ...post._doc,
+      createdAt: moment(post.createdAt).fromNow(),
+    };
+
+    res.render('details-page', {post: formattedPost})
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.redirect('/error');
   }
 };
 
@@ -66,11 +79,10 @@ export const getPost = async (req, res) => {
 export const createPost = async (req, res) => {
   const post = req.body;
   let error = [];
-  console.log(post);
   
   try {
     upload(req, res, async (err) => {
-      const maxSize = 1000000; // 1MB
+      const maxSize = 2000000; // 2MB
       if (!req.file){
         error.push('File not found')
       }
@@ -92,7 +104,6 @@ export const createPost = async (req, res) => {
           postImg: req.file.filename,
           createdAt: new Date().toISOString(),
         }
-        console.log(newPost);
   
         await PostMessage.create(newPost);
   

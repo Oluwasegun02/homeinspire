@@ -3,7 +3,15 @@
     <a href="/" class="logo">Home Inspire</a>
     <ul class="nav-links">
       <!-- <li><a href="./auth.html">Signup</a></li> -->
-      <li><a href="/auth">Login</a></li>
+      {{#if token}}
+      {{#user}}
+        <li><a href="/logout">SignOut</a></li>
+        <li><p>Welcome <span>{{name}}</span></p></li>
+        {{!-- <li><a href="/auth">{{name}}</a></li> --}}
+      {{/user}}
+      {{else}}
+        <li><a href="/auth">Login</a></li>
+      {{/if}}
     </ul>
   </nav>
 </header>

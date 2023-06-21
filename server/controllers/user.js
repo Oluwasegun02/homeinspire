@@ -42,9 +42,10 @@ export const signin = async (req, res) => {
         { expiresIn: "1h" }
       );
   
-      // console.log(token);
+      req.session.user = user;
+      req.session.token = token;
   
-      res.status(200).render("home", { user });
+      res.status(200).redirect("/");
     }
 
   } catch (error) {
@@ -83,17 +84,17 @@ export const signup = async (req, res) => {
     } else {
       const hashedPassword = await bcrypt.hash(password, 10);
   
-      const result = await User.create({
+      await User.create({
         email,
         password: hashedPassword,
         name,
       });
   
-      const token = jwt.sign(
-        { email: result.email, id: result._id },
-        "alx",
-        { expiresIn: "1h" }
-      );
+      // const token = jwt.sign(
+      //   { email: result.email, id: result._id },
+      //   "alx",
+      //   { expiresIn: "1h" }
+      // );
   
       // console.log(token);
   
@@ -107,4 +108,12 @@ export const signup = async (req, res) => {
     req.flash("formData", { name, email });
     res.redirect("/auth");
   }
+};
+
+
+export const logout = (req, res) => {
+  if (req.session) {
+    req.session?.destroy();
+  }
+  res.redirect("/");
 };

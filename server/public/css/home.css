@@ -46,9 +46,15 @@ nav {
   font-size: 20px;
 }
 
-.nav-links li {
-  display: inline;
-  margin-left: 10px;
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+.nav-links p {
+  color: #ccd0cd;
+}
+.nav-links p span {
+  color: #88e29d;
 }
 
 .nav-links li a {
@@ -103,9 +109,14 @@ position: relative;
 .display .display-content .display-title span {
   font-size: 20px;
 }
+.more-option {
+  background-color: #a19d9d61;
+  border-radius: 50px;
+}
 .fa-ellipsis-h {
-  color: #000;
+  color: #ffffff;
   cursor: pointer;
+  padding: 5px;
 }
 .display #interval {
   position: absolute;

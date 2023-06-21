@@ -1,7 +1,14 @@
-export const errorPage = (req, res) => {
-//   const token = req.session.token;
+export const homePage = (req, res) => {
+  const token = req.session.token;
+  const user = req.session.user;
 //   const errors = req.flash("error");
-  res.render("error", { title: "Error" });
+  res.render("home", { title: "Home Inspire", token, user });
+};
+export const errorPage = (req, res) => {
+  const token = req.session.token;
+  const user = req.session.user;
+//   const errors = req.flash("error");
+  res.render("error", { title: "Error", token, user });
 };
 
 export const authPage = (req, res) => {
@@ -13,7 +20,8 @@ export const authPage = (req, res) => {
 };
 
 export const detailsPage = (req, res) => {
-//   const token = req.session.token;
+  const user = req.session.user;
+  const token = req.session.token;
 //   const errors = req.flash("error");
-  res.render("details-page", { title: "House Details" });
+  res.render("details-page", { title: "House Details", token, user });
 };
