@@ -1,159 +1,167 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
 
-  body, h1, h2, h3, p, ul, li {
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    max-width: 1500px;
-    margin: 0 auto;
-  }
-  
-  header {
-    background-color: #333;
-    padding: 20px;
-  }
-  
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 20px;
-  }
-  
-  .nav-links li {
-    display: inline;
-    margin-left: 10px;
-  }
-  
-  .nav-links li a {
-    color: #fff;
-    text-decoration: none;
+
+.login-section {
+  position: relative;
+  min-height: 100vh;
+  /* background-color: #f8dd30; */
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  padding: 20px;
+}
+
+.login-section .container {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  background: #fff;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.login-section .container .user {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.login-section .container .user .imgBx {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background: #80776e;
+  transition: 0.5s;
+}
+
+.login-section .container .user .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login-section .container .user .formBx {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  transition: 0.5s;
+}
+
+.login-section .container .user .formBx form h2 {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.login-section .container .user .formBx form input {
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  background: #f5f5f5;
+  color: #333;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  margin: 8px 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+.login-section .container .user .formBx form input[type='submit'] {
+  max-width: 100px;
+  background: var(--basic-color);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.5s;
+  border-radius: 5px;
+}
+
+.login-section .container .user .formBx form .signup {
+  position: relative;
+  margin-top: 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #555;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.login-section .container .user .formBx form .signup a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #dea427;
+}
+
+.login-section .container .signupBx {
+  pointer-events: none;
+}
+
+.login-section .container.active .signupBx {
+  pointer-events: initial;
+}
+
+.login-section .container .signupBx .formBx {
+  left: 100%;
+}
+
+.login-section .container.active .signupBx .formBx {
+  left: 0;
+}
+
+.login-section .container .signupBx .imgBx {
+  left: -100%;
+}
+
+.login-section .container.active .signupBx .imgBx {
+  left: 0%;
+}
+
+.login-section .container .signinBx .formBx {
+  left: 0%;
+}
+
+.login-section .container.active .signinBx .formBx {
+  left: 100%;
+}
+
+.login-section .container .signinBx .imgBx {
+  left: 0%;
+}
+
+.login-section .container.active .signinBx .imgBx {
+  left: -100%;
+}
+
+@media (max-width: 800px) {
+  .login-section .container {
+    max-width: 400px;
   }
 
-  .login-box{
-    position:relative;
-    margin: 10px auto;
-    width: 500px;
-    height: 380px;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 3px;
-    /* -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
-  -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
-  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33); */
+  .login-section .container .imgBx {
+    display: none;
   }
-  .lb-header{
-    position:relative;
-    color: #00415d;
-    margin: 5px 5px 10px 5px;
-    padding-bottom:10px;
-    border-bottom: 1px solid #eee;
-    text-align:center;
-    height:28px;
-  }
-  .lb-header a{
-    margin: 0 25px;
-    padding: 0 20px;
-    text-decoration: none;
-    color: #666;
-    font-weight: bold;
-    font-size: 15px;
-    -webkit-transition: all 0.1s linear;
-    -moz-transition: all 0.1s linear;
-    transition: all 0.1s linear;
-  }
-  .lb-header .active{
-    color: #029f5b;
-    font-size: 18px;
-  }
-  .social-login{
-    position:relative;
-    float: left;
+
+  .login-section .container .user .formBx {
     width: 100%;
-    height:auto;
-    padding: 10px 0 15px 0;
-    border-bottom: 1px solid #eee;
   }
-  .social-login a{
-    position:relative;
-    float: left;
-    width:calc(40% - 8px);
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid rgba(0,0,0,0.05);
-    padding: 12px;
-    border-radius: 2px;
-    font-size: 12px;
-    text-transform: uppercase;
-    margin: 0 3%;
-    text-align:center;
-  }
-  .social-login a i{
-    position: relative;
-    float: left;
-    width: 20px;
-    top: 2px;
-  }
-  .social-login a:first-child{
-    background-color: #49639F;
-  }
-  .social-login a:last-child{
-    background-color: #DF4A32;
-  }
-  .email-login,.email-signup{
-    position:relative;
-    float: left;
-    width: 100%;
-    height:auto;
-    margin-top: 20px;
-    text-align:center;
-  }
-  .u-form-group{
-    width:100%;
-    margin-bottom: 10px;
-  }
-  .u-form-group input[type="email"],
-  .u-form-group input[type="password"]{
-    width: calc(50% - 22px);
-    height:45px;
-    outline: none;
-    border: 1px solid #ddd;
-    padding: 0 10px;
-    border-radius: 2px;
-    color: #333;
-    font-size:0.8rem;
-    -webkit-transition:all 0.1s linear;
-    -moz-transition:all 0.1s linear;
-    transition:all 0.1s linear;
-  }
-  .u-form-group input:focus{
-    border-color: #358efb;
-  }
-  .u-form-group button{
-    width:50%;
-    background-color: #1CB94E;
-    border: none;
-    outline: none;
-    color: #fff;
-    font-size: 14px;
-    font-weight: normal;
-    padding: 14px 0;
-    border-radius: 2px;
-    text-transform: uppercase;
-  }
-  .forgot-password{
-    width:50%;
-    text-align: left;
-    text-decoration: underline;
-    color: #888;
-    font-size: 0.75rem;
-  }
+}

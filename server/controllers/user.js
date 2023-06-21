@@ -5,73 +5,106 @@ import User from "../models/user.js";
 
 export const signin = async (req, res) => {
   const { email, password } = req.body;
+  let errors = [];
 
   try {
-    const existingUser = await User.findOne({ email });
+    const user = await User.findOne({ email });
 
-    if (!existingUser) {
-      return res.status(400).json({
-        message: "User does not exist",
-      });
+    if (!user) {
+      errors.push("User already exists");
+    }
+
+    if (!email) {
+      errors.push("Please enter a valid email");
+    }
+
+    if (!password) {
+      errors.push("Please input password");
     }
 
     const isPasswordCorrect = await bcrypt.compare(
       password,
-      existingUser.password
+      user.password
     );
 
     if (!isPasswordCorrect) {
-      return res.status(400).json({
-        message: "Password is incorrect",
-      });
+      errors.push("Please enter a valid email");
     }
 
-    const token = jwt.sign(
-      { email: existingUser.email, id: existingUser._id },
-      "memories",
-      { expiresIn: "1h" }
-    );
+    if (errors.length > 0) {
+      req.flash("error", errors[0]);
+      req.flash("formData", { email });
+      res.redirect("/auth");
+    } else {
+      const token = jwt.sign(
+        { email: user.email, id: user._id },
+        "alx",
+        { expiresIn: "1h" }
+      );
+  
+      // console.log(token);
+  
+      res.status(200).render("home", { user });
+    }
 
-    return res.status(200).json({ result: existingUser, token });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong." });
   }
 };
 
 export const signup = async (req, res) => {
-  const { email, password, confirmPassword, firstName, lastName } = req.body;
+  const { email, password, confirmPassword, name } = req.body;
+  let errors = [];
 
   try {
     const existingUser = await User.findOne({ email });
 
-    if (existingUser) {
-      return res.status(400).json({
-        message: "User already exists",
-      });
+    if (!email) {
+      errors.push('Please enter a valid email')
     }
 
+    
+    if (password.length < 6) {
+      errors.push("Password should be at least 6 character");
+    }
+    
     if (password !== confirmPassword) {
-      return res.status(400).json({
-        message: "Passwords do not match",
-      });
+      errors.push("Passwords do not match")
+    }
+    
+    if (existingUser) {
+      errors.push('User already exists')
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const result = await User.create({
-      email,
-      password: hashedPassword,
-      name: `${firstName} ${lastName}`,
-    });
-
-    const token = jwt.sign(
-      { email: result.email, id: result._id },
-      "memories",
-      { expiresIn: "1h" }
-    );
-
-    return res.status(200).json({ result, token });
+    if (errors.length > 0) {
+      req.flash("error", errors[0]);
+      req.flash("formData", { name, email });
+      res.redirect("/auth");
+    } else {
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
+      const result = await User.create({
+        email,
+        password: hashedPassword,
+        name,
+      });
+  
+      const token = jwt.sign(
+        { email: result.email, id: result._id },
+        "alx",
+        { expiresIn: "1h" }
+      );
+  
+      // console.log(token);
+  
+      req.flash("success_msg", "You are now registered and can log in");
+      req.flash("formData", { email });
+      res.redirect("/auth");
+    }
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong." });
+    console.error(error);
+    req.flash("error", "An error occurred while registering");
+    req.flash("formData", { name, email });
+    res.redirect("/auth");
   }
 };

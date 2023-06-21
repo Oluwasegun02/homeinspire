@@ -1,5 +1,56 @@
 import mongoose from "mongoose";
 import PostMessage from "../models/postMessages.js";
+import multer from "multer";
+import path from "path";
+
+const img_storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./public/uploads/");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + "_" + file.originalname);
+    // cb(null, file.originalname);
+  },
+});
+export const upload = multer({
+  storage: img_storage,
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb);
+  },
+}).single("avatar");
+
+// Check File Type
+function checkFileType(file, cb) {
+  // Allowed ext
+  const filetypes = /jpeg|jpg|png/;
+  // Check ext
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  // Check mime
+  const mimetype = filetypes.test(file.mimetype);
+
+  if (mimetype && extname) {
+    return cb(null, true);
+  } else {
+    // errorCb("Invalid file type");
+    // cb(null, false);
+    cb(false);
+  }
+}
+
+
+export const getPosts = async (req, res) => {
+  // const { page } = req.query;
+  try {
+    const posts = await PostMessage.find()
+    
+    // console.log(posts);
+    
+    res.render('home', {posts})
+  } catch (error) {
+    res.redirect('/error');
+  }
+};
 
 export const getPost = async (req, res) => {
   const { id } = req.params;
@@ -11,27 +62,72 @@ export const getPost = async (req, res) => {
   }
 };
 
-export const getPosts = async (req, res) => {
-  const { page } = req.query;
+
+export const createPost = async (req, res) => {
+  const post = req.body;
+  let error = [];
+  console.log(post);
+  
   try {
-    const LIMIT = 10;
-    const startIndex = (Number(page) - 1) * LIMIT; // get the starting index on every page. Also Number(***) is use to convert page number to number because it was formated to string from the frontend
-    const total = await PostMessage.countDocuments({});
+    upload(req, res, async (err) => {
+      const maxSize = 1000000; // 1MB
+      if (!req.file){
+        error.push('File not found')
+      }
+      if (req.file.size > maxSize) {
+        error.push('File too Large')
+      }
+      if (err instanceof multer.MulterError && err.code === "Invalid file type") {
+        error.push('File error')
+      }
+      if (error.length > 0) {
+        console.log(error);
+        res.redirect("/error");
+      } else {
+        const newPost = {
+          creator: post.creator,
+          title: post.title,
+          category: post.category,
+          description: post.description,
+          postImg: req.file.filename,
+          createdAt: new Date().toISOString(),
+        }
+        console.log(newPost);
+  
+        await PostMessage.create(newPost);
+  
+        res.redirect("/");
+        
+      }
 
-    const posts = await PostMessage.find()
-      .sort({ _id: -1 })
-      .limit(LIMIT)
-      .skip(startIndex);
-
-    res.status(200).json({
-      data: posts,
-      currentPage: Number(page),
-      numberOfPages: Math.ceil(total / LIMIT),
     });
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.redirect('/error')
   }
 };
+
+
+// export const getPosts = async (req, res) => {
+//   const { page } = req.query;
+//   try {
+//     const LIMIT = 10;
+//     const startIndex = (Number(page) - 1) * LIMIT; // get the starting index on every page. Also Number(***) is use to convert page number to number because it was formated to string from the frontend
+//     const total = await PostMessage.countDocuments({});
+
+//     const posts = await PostMessage.find()
+//       .sort({ _id: -1 })
+//       .limit(LIMIT)
+//       .skip(startIndex);
+
+//     res.status(200).json({
+//       data: posts,
+//       currentPage: Number(page),
+//       numberOfPages: Math.ceil(total / LIMIT),
+//     });
+//   } catch (error) {
+//     res.status(404).json({ message: error.message });
+//   }
+// };
 
 export const getPostsBySearch = async (req, res) => {
   const { searchQuery, tags } = req.query;
@@ -49,23 +145,6 @@ export const getPostsBySearch = async (req, res) => {
   }
 };
 
-export const createPost = async (req, res) => {
-  const post = req.body;
-
-  const newPost = new PostMessage({
-    ...post,
-    creator: req.userId,
-    createdAt: new Date().toISOString(),
-  });
-
-  try {
-    await newPost.save();
-
-    res.status(201).json(newPost);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
 
 export const updatePost = async (req, res) => {
   const { id: _id } = req.params;
