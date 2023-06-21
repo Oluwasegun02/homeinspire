@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import hbs from "express-handlebars";
-import flashMessages from "connect-flash";
 import session from "express-session";
 import flash from "express-flash";
 

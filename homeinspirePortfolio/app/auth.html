@@ -15,6 +15,7 @@
       <nav>
         <a href="./home.html" class="logo">Home Inspire</a>
         <ul class="nav-links">
+<<<<<<< HEAD
           <!-- <li><a href="./auth.html">Signup</a></li> -->
           <li><a href="./auth.html">Login</a></li>
         </ul>
@@ -62,3 +63,93 @@
     </section>
   </body>
 </html>
+=======
+          <li><a href="#signup-box-link">Signup</a></li>
+          <li><a href="#login-box-link">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="login-box">
+      <div class="lb-header">
+        <a href="#login-box-link" class="active" id="login-box-link">Login</a>
+        <a href="#signup-box-link" id="signup-box-link">Sign Up</a>
+      </div>
+      <div class="social-login">
+        <a href="#">
+          <i class="fa fa-facebook fa-lg"></i>
+          Login in with facebook
+        </a>
+        <a href="#">
+          <i class="fa fa-google-plus fa-lg"></i>
+          log in with Google
+        </a>
+      </div>
+      <form class="email-login">
+        <div class="u-form-group">
+          <input type="email" placeholder="Email"/>
+        </div>
+        <div class="u-form-group">
+          <input type="password" placeholder="Password"/>
+        </div>
+        <div class="u-form-group">
+          <button>Log in</button>
+        </div>
+        <div class="u-form-group">
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+      </form>
+  </div>
+  <div class="login-box">
+      <div class="lb-header">
+        <a href="#" class="active" id="login-box-link">Login</a>
+        <a href="#" id="signup-box-link">Sign Up</a>
+      </div>
+      <div class="social-login">
+        <a href="#">
+          <i class="fa fa-facebook fa-lg"></i>
+          Login in with facebook
+        </a>
+        <a href="#">
+          <i class="fa fa-google-plus fa-lg"></i>
+          log in with Google
+        </a>
+      </div>
+      <form class="email-signup">
+        <div class="u-form-group">
+          <input type="email" placeholder="Email"/>
+        </div>
+        <div class="u-form-group">
+          <input type="password" placeholder="Password"/>
+        </div>
+        <div class="u-form-group">
+          <input type="password" placeholder="Confirm Password"/>
+        </div>
+        <div class="u-form-group">
+          <button>Sign Up</button>
+        </div>
+      </form>
+    </div>
+    
+   <script>
+    let emailL = document.getElementsByClassName("email-signup");
+    let emailIn = document.getElementsByClassName("email-login");
+    let signupbox = document.getElementsById("signup-box-link");
+    let emailsignup = document.getElementsById("login-box-link")
+   
+      $("emailL").hide();
+      $("signupbox").click(function(){
+        $("emailIn").fadeOut(100);
+        $("emailL").delay(100).fadeIn(100);
+        $("emailsignup").removeClass("active");
+        $("signupbox").addClass("active");
+      });
+      $("emailsignup").click(function(){
+        $("emailIn").delay(100).fadeIn(100);;
+        $("emailL").fadeOut(100);
+        $("emailsignup").addClass("active");
+        $("signupbox").removeClass("active");
+      });
+   </script> 
+</body>
+</html>
+>>>>>>> 1fd841c39669ca118ede2f391a6bdbc993443b75

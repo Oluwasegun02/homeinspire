@@ -52,10 +52,12 @@ body {
   }
   
   .slide {
+    width: 90%;
     margin-bottom: 40px;
   }
   
   .slide h2 {
+    align-items: center;
     font-size: 24px;
     margin-bottom: 20px;
   }
@@ -67,6 +69,10 @@ body {
   
   li {
     margin-bottom: 10px;
+  }
+  .slide ul img{
+    width: 70%;
+    height: 40vh;
   }
   
   
