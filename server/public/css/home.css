@@ -106,6 +106,12 @@ position: relative;
   align-items: center;
   justify-content: space-between;
 }
+.goback{
+  background-color: #333;
+  color: #ccc;
+}
+.goback:hover{
+  background-color: #555;
 .display .display-content .display-title span {
   font-size: 20px;
 }

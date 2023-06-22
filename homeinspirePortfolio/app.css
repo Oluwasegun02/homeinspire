@@ -1,4 +1,4 @@
-:root {
+ :root {
   --basic-color: #80776e;
 }
 *{
@@ -19,7 +19,7 @@ body {
   }
   
   .presentation {
-    max-width: 800px;
+    max-width: 70%;
     margin: 0 auto;
     padding: 40px;
   }
@@ -126,9 +126,10 @@ body {
     border: none;
     cursor: pointer;
     margin-right: 10px;
+    align-items: center;
   }
 
   #like-count {
     margin-left: 10px;
     font-weight: bold;
-  }
+  } 
