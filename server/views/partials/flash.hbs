@@ -1,0 +1,21 @@
+
+{{#if errors.length}}
+    {{#each errors}}
+      <div class="alert alert-danger my-2" role="alert">
+            {{this}}
+            {{!-- <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                <i aria-hidden="true" class="fa fa-times"></i>
+            </span> --}}
+        </div>
+    {{/each}}
+{{/if}}
+{{#if success_msg}}
+    {{#each success_msg}}
+      <div class="alert alert-success my-2" role="alert">
+            {{this}}
+            {{!-- <span type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                <i aria-hidden="true" class="fa fa-times"></i>
+            </span> --}}
+        </div>
+    {{/each}}
+{{/if}}

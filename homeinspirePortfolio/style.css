@@ -3,10 +3,35 @@ body, h1, h2, h3, p, ul, li {
     margin: 0;
     padding: 0;
   }
+  .button{
+    cursor: pointer;
+    align-items: center;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #fff;
+  }
+  .button a{
+    align-items: center;
+    color: #ccc;
+  }
+  .button:hover{
+    background-color: #555;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  a :hover{
+    cursor: pointer;
+  }
   
   body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    max-width: 1500px;
+    margin: 0 auto;
   }
   
   header {
@@ -78,20 +103,123 @@ body, h1, h2, h3, p, ul, li {
     background-color: #555;
   }
   
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px;
+  .presentation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 30px;
+
   }
-  
-  h2 {
+  .presentation h1{
+    margin: 10px 0;
+    padding: 10px 0;
+    font: 24px sans-serif;
+  }
+  .presentation .container {
+    flex-wrap: wrap;
+    min-width: 85%;
+  }
+  .presentation .container h2{
+    padding-bottom: 0;
+    text-align: center;
+  }
+  .presentation .container p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    font-weight: 500;
+    text-align: center;
+    /* font: 500 medium, Arial, Helvetica, sans-serif; */
+  }
+  .presentation .slide{
+    align-self: center;
+    min-width: 80%;
+    min-height: auto;
+    color: #0e0808;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 20px;
+    
+  }
+  .presentation .slide h2{
+    text-align: center;
+  }
+  .presentation .slide ul .button{
+    justify-content: center;
+    align-items: center;
+    margin-left: 35%;
+  }
+  .presentation .slide ul,
+  .presentation .slide ul li{
+    margin: auto;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .presentation .slide ul img{
+    width: 95%;
+    align-items: center;
+  }
+  #presentation h2,
+  #blog h2 {
     margin-bottom: 20px;
+  }
+  .container{
+    margin: 20px;
+    text-align: center;
   }
   
   .blog-post {
+    margin-left: 3%;
+    width: 95%;
     margin-bottom: 20px;
+    background-color: #ccc;
+    color: #000;
+    font: 2em sans-serif;
+  } 
+  .blog-post ul li {
+    list-style-type: none;
+    display: block;
   }
-  
+  h3 {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 11px;
+  }
+
+  .comment-box {
+    margin-top: 20px;
+  }
+
+  h4 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    width: 90%;
+    margin-left: 3%;
+    padding: 10px;
+    resize: vertical;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    align-items: center;
+  }
+
+  #like-count {
+    margin-left: 10px;
+    font-weight: bold;
+  } 
+
   footer {
     background-color: #333;
     color: #fff;

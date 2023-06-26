@@ -1,0 +1,77 @@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <main class="main-section">
+        <section class="posts">
+          <!-- First card -->
+
+          {{#each posts}}
+          <div id="card" class="cards">
+            <div class="numbers">
+              <div class="display">
+                <img src="../public/uploads/{{postImg}}" alt="" width="100%" height="200px">
+                <div class="display-content">
+                  <div class="display-title">
+                    <span>{{creator}}</span>
+                    <a href="/{{_id}}/post" class="more-option"><i class="fa fa-ellipsis-h" aria-hidden="true" title="view"></i></a>
+                  </div>
+                  <span id="interval">{{createdAt}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="bodys">
+              <!-- <ul id="tag">
+                <li>#lovely</li>
+                <li>#builtiful</li>
+              </ul> -->
+              <h3 id="title">{{category}}</h3>
+              <p id="description">{{description}}</p>
+              <!-- <p id="like">I will display &#8364; <button id="like-btn">Like</button> <span id="like-count">0</span> Likes</p> -->
+            </div>
+          </div>
+          {{/each}}
+
+          <div id="card" class="cards">
+            <div class="numbers">
+              <div class="display">
+                <img src="../public/image/home2.jpg" alt="" width="100%" height="200px">
+                <div class="display-content">
+                  <div class="display-title">
+                    <span>Pius_King Interior</span>
+                    <a href="/2/post" class="more-option"><i class="fa fa-ellipsis-h" aria-hidden="true" title="view"></i></a>
+                  </div>
+                  <span id="interval">2 Week ago</h3>
+                </div>
+              </div>
+            </div>
+            <div class="bodys">
+              <!-- <ul id="tag">
+                <li>#lovely</li>
+                <li>#builtiful</li>
+              </ul> -->
+              <h3 id="title">Category</h3>
+              <p id="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum unde magni enim.</p>
+              <!-- <p id="like">I will display &#8364; <button id="like-btn">Like</button> <span id="like-count">0</span> Likes</p> -->
+            </div>
+          </div>
+
+        </section>
+
+        <aside>
+          <div class="sidebar">
+            <h2>Creating a Home Inspire</h2>
+            <form action="/create" enctype="multipart/form-data" method="post">
+              <input type="text" placeholder="Creator" class="input" name="creator" required>
+              <input type="text" placeholder="Title" class="input" name="title" required>
+              <input type="text" placeholder="Category" class="input" name="category" required>
+              <input type="text" placeholder="Description" class="input" name="description" required>
+              <input type="file" id="file1" name="avatar" class="upload" required>
+              {{#if user}}
+                <input type="submit" value="Submit" class="btn">
+              {{else}}
+                <p>You must be logged in to create a post</p>
+              {{/if}}
+              <!-- <button class="btn">Clear</button> -->
+            </form>
+          </div>
+        </aside>
+    </main>

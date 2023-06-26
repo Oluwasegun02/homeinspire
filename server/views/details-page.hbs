@@ -1,0 +1,32 @@
+<main class="details-display">
+        <section id="card" class="cards">
+            <div class="numbers">
+              <div class="display">
+                <img src="../public/uploads/{{post.postImg}}" alt="" width="100%" height="500px">
+                <div class="display-content">
+                  <div class="display-title">
+                    <span>{{posts.creator}}</span>
+                    <a href="/"><button class="goback">go back</button></a>
+                  </div>
+                  <span id="interval">{{post.createdAt}}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="bodys">
+              <!-- <ul id="tag">
+                <li>#lovely</li>
+                <li>#builtiful</li>
+              </ul> -->
+              <h3 id="title">{{post.category}}</h3>
+              <p id="description">{{post.description}}</p>
+              <!-- <p id="like">I will display &#8364; <button id="like-btn">Like</button> <span id="like-count">0</span> Likes</p> -->
+            </div>
+          </div>
+          <section>
+              <form class="comment-form">
+                  <textarea class="comment-input" placeholder="Write a comment"></textarea>
+                  <button type="submit" class="comment-btn">Submit</button>
+              </form>
+          </section>
+        </section>
+    </main>
